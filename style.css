@@ -20,6 +20,7 @@ header {
   z-index: 200;
   padding: 15px 0;
   background: transparent;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 nav {
@@ -47,12 +48,24 @@ nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
   transition: all 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
   color: #ffd700;
+}
+
+/* Navbar when scrolled */
+header.scrolled {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+header.scrolled nav ul li a {
+  color: #0078ff;
+  text-shadow: none;
 }
 
 /* Hero Section */
@@ -129,6 +142,7 @@ nav ul li a.active {
 }
 
 .content-section h2 { color: #ff4081; margin-bottom: 20px; }
+
 button {
   background: #ff4081;
   color: #fff;
