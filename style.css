@@ -192,3 +192,9 @@ footer {
     margin: 5px 10px;
   }
 }
+/* Active nav link */
+nav ul li a.active {
+  background: #ffd700;
+  color: #000;
+  border-radius: 5px;
+}
