@@ -31,3 +31,23 @@ const observer = new IntersectionObserver(
 sections.forEach(section => {
   observer.observe(section);
 });
+// Highlight active nav link on scroll
+const navLinks = document.querySelectorAll('nav ul li a');
+const sectionsAll = document.querySelectorAll('main .content-section');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sectionsAll.forEach(section => {
+    const sectionTop = section.offsetTop - 100; // adjust for header height
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
