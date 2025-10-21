@@ -1,138 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Avi Thapa — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avi Thapa</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="max-width header-inner">
-      <a class="brand" href="#home">Avi Thapa</a>
-
-      <nav class="main-nav" role="navigation" aria-label="Main">
-        <ul class="nav-list" id="navList">
-          <li><a class="nav-btn active" data-target="home" href="#home">Home</a></li>
-          <li><a class="nav-btn" data-target="about" href="#about">About Me</a></li>
-          <li><a class="nav-btn" data-target="pictures" href="#pictures">Pictures</a></li>
-          <li><a class="nav-btn" data-target="contact" href="#contact">Contact Me</a></li>
-          <li><a class="nav-btn" data-target="xxx" href="#xxx">XXX</a></li>
-          <li><a class="nav-btn" data-target="yyyz" href="#yyyz">Yyyz</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#pictures">Pictures</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#xxx">XXX</a></li>
+        <li><a href="#yyyz">YYYZ</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- HERO / Home -->
-    <section id="home" class="panel hero-panel">
-      <div class="max-width hero-grid">
-        <div class="hero-text">
-          <h1 class="main-heading">the most beautiful place i've ever lived in</h1>
-          <p class="lead">Welcome — I'm Avi. I craft software and ideas that try to make life better. I like Golden Retrievers, I'm learning Spanish, and I build things that matter.</p>
-
-          <div class="cta-row">
-            <a class="btn primary" href="#contact">Get in touch</a>
-            <a class="btn ghost" href="https://www.facebook.com/thapaavi/" target="_blank" rel="noopener">Facebook</a>
-            <a class="btn ghost" href="https://instagram.com/avithapa4" target="_blank" rel="noopener">Instagram</a>
-          </div>
-        </div>
-
-        <!-- decorative right image is implemented in CSS as background; keep an empty figure for semantics -->
-        <figure class="hero-image" aria-hidden="true"></figure>
-      </div>
-
-      <div id="floatingIcons" aria-hidden="true" class="floating-icons"></div>
-    </section>
-
-    <!-- Horizontal tab bar (fixed below header on scroll) -->
-    <div class="tabbar" id="tabbar">
-      <div class="max-width tabbar-inner">
-        <ul class="tab-list" id="tabList">
-          <li><a class="tab-link active" data-target="about" href="#about">About Me</a></li>
-          <li><a class="tab-link" data-target="pictures" href="#pictures">Pictures</a></li>
-          <li><a class="tab-link" data-target="contact" href="#contact">Contact Me</a></li>
-          <li><a class="tab-link" data-target="xxx" href="#xxx">XXX</a></li>
-          <li><a class="tab-link" data-target="yyyz" href="#yyyz">Yyyz</a></li>
-        </ul>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to My World</h1>
+      <p>Peace ✌️ and Love ❤️ from San Francisco.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/thapaavi/" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/avithapa4" target="_blank">Instagram</a>
       </div>
     </div>
+  </section>
 
-    <!-- CONTENT SECTIONS (appear below the horizontal bar, centered) -->
-    <section id="about" class="panel content-panel">
-      <div class="max-width content-card">
-        <h2>About Me</h2>
-        <p>I hold a BS in Computer Science and an MS in Information Systems. I have 8 years of software engineering experience and a dissertation project titled "Machines for Humanity" focused on sociotechnical informatics to address housing, food, and healthcare problems.</p>
-        <ul>
-          <li>Software Engineer — 8 years experience</li>
-          <li>Learning Spanish (practicing daily)</li>
-          <li>Golden Retrievers enthusiast</li>
-        </ul>
-      </div>
+  <main>
+    <section id="about" class="content-section">
+      <h2>About Me</h2>
+      <p>Hi, I'm Avi Thapa — a software engineer, dreamer, and explorer. I love technology, design, and building systems that make life better. This site is a small window into what I do and who I am.</p>
     </section>
 
-    <section id="pictures" class="panel content-panel">
-      <div class="max-width content-card">
-        <h2>Pictures</h2>
-        <p>Responsive gallery. Replace placeholders with real images in the `images/` folder or provide filenames and I'll update markup.</p>
-        <div class="photo-grid">
-          <div class="photo-item">images/sf1.jpg</div>
-          <div class="photo-item">images/sf2.jpg</div>
-          <div class="photo-item">images/dog.jpg</div>
-          <div class="photo-item">images/travel.jpg</div>
-        </div>
-      </div>
+    <section id="pictures" class="content-section">
+      <h2>Pictures</h2>
+      <p>Here I’ll share some of my favorite shots — moments, memories, and adventures that define who I am.</p>
     </section>
 
-    <section id="contact" class="panel content-panel">
-      <div class="max-width content-card">
-        <h2>Contact Me</h2>
-        <p>Use the form to start an email. Your address will open in the visitor's email client; my email is not printed on the page.</p>
-
-        <form id="contactForm" class="contact-form" autocomplete="on">
-          <label>
-            Your name
-            <input type="text" name="name" id="name" required placeholder="Your name" />
-          </label>
-
-          <label>
-            Subject
-            <input type="text" name="subject" id="subject" required placeholder="Subject" />
-          </label>
-
-          <label>
-            Message
-            <textarea name="message" id="message" required placeholder="Write a short message..." rows="6"></textarea>
-          </label>
-
-          <div class="form-row">
-            <button type="submit" class="btn primary">Email Me</button>
-            <button type="button" id="clearBtn" class="btn ghost">Clear</button>
-          </div>
-        </form>
-      </div>
+    <section id="contact" class="content-section">
+      <h2>Contact Me</h2>
+      <p>If you’d like to reach me, hit the button below — it’ll send me a direct message via email.</p>
+      <button id="contactButton">Email Me</button>
     </section>
 
-    <section id="xxx" class="panel content-panel">
-      <div class="max-width content-card">
-        <h2>XXX</h2>
-        <p>Placeholder for XXX. Replace with your content — short bio, project list, or links.</p>
-      </div>
+    <section id="xxx" class="content-section">
+      <h2>XXX</h2>
+      <p>This section can be anything you want — maybe a blog, a playlist, or quotes you love.</p>
     </section>
 
-    <section id="yyyz" class="panel content-panel">
-      <div class="max-width content-card">
-        <h2>Yyyz</h2>
-        <p>Placeholder for Yyyz. Use this for extra info or a blog index if you like.</p>
-      </div>
+    <section id="yyyz" class="content-section">
+      <h2>YYYZ</h2>
+      <p>Another page for creativity — art, ideas, or upcoming projects.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="max-width">© <span id="year"></span> Avi Thapa — Built with care</div>
+  <footer>
+    <p>© 2025 Avi Thapa | Built with peace & love ✌️❤️</p>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
