@@ -1,3 +1,4 @@
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -45,6 +46,12 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
+nav ul li a.active {
+  background: #ffd700;
+  color: #000;
+  border-radius: 5px;
+}
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -65,7 +72,6 @@ nav ul li a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Subtle animated tie-dye */
   background: linear-gradient(
       120deg,
       rgba(255, 200, 150, 0.1),
@@ -121,7 +127,7 @@ nav ul li a:hover {
   max-width: 1200px;
   margin: 120px auto;
   gap: 20px;
-  overflow-x: auto; /* prevent overflow but allow scrolling on tiny screens */
+  overflow-x: auto;
   padding-bottom: 50px;
 }
 
@@ -171,6 +177,43 @@ footer {
   margin-top: 50px;
 }
 
+/* Marquee Section */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 2px solid #333; /* optional */
+  background-color: white; /* optional */
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 15s linear infinite;
+}
+
+.marquee-image {
+  height: 60px;
+  max-height: 15vh; /* responsive */
+  width: auto;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media screen and (max-width: 768px) {
+  .marquee-image {
+    height: 40px;
+    margin: 0 5px;
+  }
+}
+
 /* Responsive */
 @media screen and (max-width: 1024px) {
   .content-section {
@@ -183,44 +226,12 @@ footer {
     font-size: 2em;
   }
   .content-container {
-    flex-wrap: wrap; /* stack sections on small screens */
+    flex-wrap: wrap;
   }
   .content-section {
     flex: 1 1 100%;
   }
   nav ul li {
     margin: 5px 10px;
-  }
-}
-/* Active nav link */
-nav ul li a.active {
-  background: #ffd700;
-  color: #000;
-  border-radius: .marquee-container {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  border: 2px solid #333; /* Optional: adds a border around the marquee */
-  background-color: white; /* Optional: sets background color */
-}
-
-.marquee {
-  display: inline-block;
-  padding-left: 100%; /* Starts the images off-screen */
-  animation: scroll 15s linear infinite;
-}
-
-.marquee-image {
-  height: 100px; /* Adjust the height as needed */
-  margin: 0 20px;
-  vertical-align: middle;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
   }
 }
