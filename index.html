@@ -7,75 +7,88 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="max-width">
+  <header class="site-header" role="banner">
+    <div class="max-width header-inner">
       <a class="brand" href="#home">Avi Thapa</a>
-      <nav class="top-nav" aria-label="Primary">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About Me</a>
-        <a href="#pictures" class="nav-link">Pictures</a>
-        <a href="#contact" class="nav-link">Contact</a>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <ul class="nav-list" id="navList">
+          <li><a class="nav-btn active" data-target="home" href="#home">Home</a></li>
+          <li><a class="nav-btn" data-target="about" href="#about">About Me</a></li>
+          <li><a class="nav-btn" data-target="pictures" href="#pictures">Pictures</a></li>
+          <li><a class="nav-btn" data-target="contact" href="#contact">Contact Me</a></li>
+          <li><a class="nav-btn" data-target="xxx" href="#xxx">XXX</a></li>
+          <li><a class="nav-btn" data-target="yyyz" href="#yyyz">Yyyz</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Home -->
-    <section id="home" class="panel home-panel">
-      <div class="max-width home-grid">
-        <div class="home-content">
+    <!-- HERO / Home -->
+    <section id="home" class="panel hero-panel">
+      <div class="max-width hero-grid">
+        <div class="hero-text">
           <h1 class="main-heading">the most beautiful place i've ever lived in</h1>
-          <p class="lead">Welcome — I'm Avi. I build things with code, I like Golden Retrievers, and I'm learning Spanish. This is my small corner of the web. Follow along or get in touch.</p>
+          <p class="lead">Welcome — I'm Avi. I craft software and ideas that try to make life better. I like Golden Retrievers, I'm learning Spanish, and I build things that matter.</p>
 
-          <div class="links-row">
+          <div class="cta-row">
+            <a class="btn primary" href="#contact">Get in touch</a>
             <a class="btn ghost" href="https://www.facebook.com/thapaavi/" target="_blank" rel="noopener">Facebook</a>
             <a class="btn ghost" href="https://instagram.com/avithapa4" target="_blank" rel="noopener">Instagram</a>
           </div>
         </div>
 
-        <figure class="home-figure" aria-hidden="false">
-          <!-- Replace the src below with your image file path (e.g., images/sf.jpg) if you have one -->
-          <img id="coverImage" src="sf.PNG" alt="Profile or San Francisco" onerror="this.classList.add('no-image')" />
-        </figure>
+        <!-- decorative right image is implemented in CSS as background; keep an empty figure for semantics -->
+        <figure class="hero-image" aria-hidden="true"></figure>
       </div>
 
-      <!-- falling icons decorative layer -->
       <div id="floatingIcons" aria-hidden="true" class="floating-icons"></div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="panel about-panel">
-      <div class="max-width">
+    <!-- Horizontal tab bar (fixed below header on scroll) -->
+    <div class="tabbar" id="tabbar">
+      <div class="max-width tabbar-inner">
+        <ul class="tab-list" id="tabList">
+          <li><a class="tab-link active" data-target="about" href="#about">About Me</a></li>
+          <li><a class="tab-link" data-target="pictures" href="#pictures">Pictures</a></li>
+          <li><a class="tab-link" data-target="contact" href="#contact">Contact Me</a></li>
+          <li><a class="tab-link" data-target="xxx" href="#xxx">XXX</a></li>
+          <li><a class="tab-link" data-target="yyyz" href="#yyyz">Yyyz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONTENT SECTIONS (appear below the horizontal bar, centered) -->
+    <section id="about" class="panel content-panel">
+      <div class="max-width content-card">
         <h2>About Me</h2>
-        <p>I graduated with a BS in Computer Science and an MS in Information Systems. I work on software systems that aim to make life better—education access, food, housing, and healthcare are topics close to my heart. I like subtle chaos, Golden Retrievers, and practicing Spanish daily.</p>
+        <p>I hold a BS in Computer Science and an MS in Information Systems. I have 8 years of software engineering experience and a dissertation project titled "Machines for Humanity" focused on sociotechnical informatics to address housing, food, and healthcare problems.</p>
         <ul>
           <li>Software Engineer — 8 years experience</li>
-          <li>Learning Spanish (A1 → next levels)</li>
-          <li>Dissertation: Machines for Humanity — sociotechnical informatics</li>
+          <li>Learning Spanish (practicing daily)</li>
+          <li>Golden Retrievers enthusiast</li>
         </ul>
       </div>
     </section>
 
-    <!-- Pictures -->
-    <section id="pictures" class="panel pictures-panel">
-      <div class="max-width">
+    <section id="pictures" class="panel content-panel">
+      <div class="max-width content-card">
         <h2>Pictures</h2>
-        <p>Below is a responsive grid. Replace the placeholders with your photos in `images/` (example filenames shown).</p>
-
+        <p>Responsive gallery. Replace placeholders with real images in the `images/` folder or provide filenames and I'll update markup.</p>
         <div class="photo-grid">
-          <div class="photo-item"><div class="photo-placeholder">images/sf1.jpg</div></div>
-          <div class="photo-item"><div class="photo-placeholder">images/sf2.jpg</div></div>
-          <div class="photo-item"><div class="photo-placeholder">images/dog.jpg</div></div>
-          <div class="photo-item"><div class="photo-placeholder">images/travel.jpg</div></div>
+          <div class="photo-item">images/sf1.jpg</div>
+          <div class="photo-item">images/sf2.jpg</div>
+          <div class="photo-item">images/dog.jpg</div>
+          <div class="photo-item">images/travel.jpg</div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="panel contact-panel">
-      <div class="max-width">
-        <h2>Contact</h2>
-        <p>If you'd like to email me, use the form below — your message will open in your email client. My address is not shown on the page.</p>
+    <section id="contact" class="panel content-panel">
+      <div class="max-width content-card">
+        <h2>Contact Me</h2>
+        <p>Use the form to start an email. Your address will open in the visitor's email client; my email is not printed on the page.</p>
 
         <form id="contactForm" class="contact-form" autocomplete="on">
           <label>
@@ -98,6 +111,20 @@
             <button type="button" id="clearBtn" class="btn ghost">Clear</button>
           </div>
         </form>
+      </div>
+    </section>
+
+    <section id="xxx" class="panel content-panel">
+      <div class="max-width content-card">
+        <h2>XXX</h2>
+        <p>Placeholder for XXX. Replace with your content — short bio, project list, or links.</p>
+      </div>
+    </section>
+
+    <section id="yyyz" class="panel content-panel">
+      <div class="max-width content-card">
+        <h2>Yyyz</h2>
+        <p>Placeholder for Yyyz. Use this for extra info or a blog index if you like.</p>
       </div>
     </section>
   </main>
