@@ -1,99 +1,102 @@
-// Responsive interactions + floating icons + contact form behavior
+// Smooth navigation, tab activation, floating icons, contact mailto (email not visible in HTML)
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   // set year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Build floating icons (hearts and peace signs)
+  // Smooth scroll for all anchor links that point to IDs
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length > 1) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const offset = 84; // header + tabbar comfortable offset
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior:'smooth' });
+        }
+      }
+      // Manage active state for nav/tab links
+      const group = a.classList.contains('nav-btn') ? '.nav-btn' : '.tab-link';
+      document.querySelectorAll(group).forEach(n => n.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+
+  // Tab-list click delegates (keeps tab highlight synced)
+  document.getElementById('tabList').addEventListener('click', (ev) => {
+    const a = ev.target.closest('a.tab-link');
+    if (!a) return;
+    document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+    a.classList.add('active');
+  });
+
+  // Small tidy: if nav-btn exists, clicking highlights that too
+  const navList = document.getElementById('navList');
+  if (navList) {
+    navList.addEventListener('click', (ev) => {
+      const a = ev.target.closest('a.nav-btn');
+      if (!a) return;
+      document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+      a.classList.add('active');
+    });
+  }
+
+  // Floating icons (reduced count, subtle)
   const container = document.getElementById('floatingIcons');
-
-  // configuration: reduce number of hearts (user asked to cut hearts in half)
-  const HEART_COUNT = 8;      // smaller number for a cleaner look
-  const PEACE_COUNT = 3;      // a few peace signs, larger
-  const total = HEART_COUNT + PEACE_COUNT;
-
-  const makeIcon = (ch, size, left, delay, duration) => {
+  const HEART_COUNT = 6;
+  const PEACE_COUNT = 3;
+  function createIcon(ch, size, left, delay, duration, rotate){
     const s = document.createElement('span');
-    s.className = 'float-icon';
     s.textContent = ch;
-    s.style.position = 'absolute';
+    s.style.position='absolute';
     s.style.left = left + '%';
-    s.style.top = '-6%';
+    s.style.top = '-8%';
     s.style.fontSize = size + 'px';
-    s.style.opacity = 0.9;
-    s.style.transform = `translateY(-10px)`;
-    s.style.willChange = 'transform, opacity';
+    s.style.opacity = '0.9';
     s.style.pointerEvents = 'none';
+    s.style.transform = `translateY(-10px) rotate(${rotate}deg)`;
     s.style.animation = `fall ${duration}s linear ${delay}s forwards`;
     container.appendChild(s);
-  };
-
-  // create hearts
-  for (let i = 0; i < HEART_COUNT; i++) {
-    const left = 6 + Math.random() * 88;
-    const size = 14 + Math.random() * 14; // small hearts
-    const delay = Math.random() * 4;
-    const duration = 8 + Math.random() * 8;
-    makeIcon('❤', size, left, delay, duration);
   }
-
-  // create peace signs - slightly larger as requested
-  for (let i = 0; i < PEACE_COUNT; i++) {
-    const left = 6 + Math.random() * 88;
-    const size = 22 + Math.random() * 12; // larger than hearts
-    const delay = Math.random() * 3;
-    const duration = 10 + Math.random() * 8;
-    makeIcon('☮', size, left, delay, duration);
+  for (let i=0;i<HEART_COUNT;i++){
+    createIcon('❤', 14 + Math.random()*8, 6 + Math.random()*88, Math.random()*4, 8 + Math.random()*8, Math.random()*40-20);
   }
-
-  // CSS animation injected once to keep the CSS file focused
+  for (let i=0;i<PEACE_COUNT;i++){
+    createIcon('☮', 20 + Math.random()*8, 6 + Math.random()*88, Math.random()*3, 10 + Math.random()*8, Math.random()*40-20);
+  }
+  // keyframes injected
   const style = document.createElement('style');
   style.textContent = `
     @keyframes fall {
       0% { transform: translateY(-10px) rotate(0deg); opacity:0.95; }
       70% { opacity:0.95; }
-      100% { transform: translateY(120vh) rotate(180deg); opacity:0.06; }
+      100% { transform: translateY(120vh) rotate(160deg); opacity:0.06; }
     }
-    .float-icon { user-select:none; }
   `;
   document.head.appendChild(style);
 
-  // Contact form: build mailto without showing email address visibly in HTML
+  // Contact form: assemble email in JS (not shown on page)
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    const name = encodeURIComponent(document.getElementById('name').value.trim());
-    const subject = encodeURIComponent(document.getElementById('subject').value.trim());
-    const message = encodeURIComponent(document.getElementById('message').value.trim());
+    const name = encodeURIComponent(document.getElementById('name').value.trim() || 'No name');
+    const subject = encodeURIComponent(document.getElementById('subject').value.trim() || 'Website contact');
+    const message = encodeURIComponent(document.getElementById('message').value.trim() || '');
 
-    // Obfuscate the email address pieces (so it's not plain text in HTML)
+    // email assembled from pieces so it's not visible in HTML
     const user = 'abhayathapa5555';
     const domain = 'gmail' + '.com';
-    const email = user + '@' + domain;
+    const to = `${user}@${domain}`;
 
-    // Compose body with some context
     const body = encodeURIComponent(`From: ${name}\n\n${message}\n\n---\nSent from the website.`);
-    const mailto = `mailto:${email}?subject=${subject}&body=${body}`;
-
-    // Open user's default mail client
+    const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+    // open mail client
     window.location.href = mailto;
   });
 
-  // Clear button
-  document.getElementById('clearBtn').addEventListener('click', function () {
-    contactForm.reset();
-  });
-
-  // Mobile: smooth scrolling to anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({behavior: 'smooth', block: 'start'});
-      }
-    });
-  });
-
-  // If header nav hidden on mobile, we can make the brand clickable to go home (already is)
+  // clear button
+  const clearBtn = document.getElementById('clearBtn');
+  if (clearBtn) clearBtn.addEventListener('click', () => contactForm.reset());
 });
