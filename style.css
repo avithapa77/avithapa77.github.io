@@ -10,7 +10,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header and navigation */
+/* Header / Navbar */
 header {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -24,7 +24,7 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* wraps on smaller screens */
 }
 
 nav ul li {
@@ -49,14 +49,14 @@ nav ul li a:hover {
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* full viewport height */
+  height: 100vh;
   background: url('sf.PNG') no-repeat center center;
-  background-size: cover; /* ensures it covers entire hero area */
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden; /* prevents any overflow from the image */
+  overflow: hidden;
 }
 
 .hero .overlay {
@@ -65,7 +65,7 @@ nav ul li a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Subtle tie-dye gradient overlay */
+  /* Subtle animated tie-dye */
   background: linear-gradient(
       120deg,
       rgba(255, 200, 150, 0.1),
@@ -73,6 +73,14 @@ nav ul li a:hover {
       rgba(200, 255, 180, 0.1),
       rgba(255, 150, 200, 0.1)
     );
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero-content {
@@ -109,15 +117,17 @@ nav ul li a:hover {
 .content-container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* keeps one line on desktop */
   max-width: 1200px;
-  margin: 120px auto; /* lowers sections */
+  margin: 120px auto;
   gap: 20px;
+  overflow-x: auto; /* prevent overflow but allow scrolling on tiny screens */
+  padding-bottom: 50px;
 }
 
-/* Each section in horizontal layout */
+/* Each section */
 .content-section {
-  flex: 1 1 30%;
+  flex: 1 1 20%;
   min-width: 250px;
   padding: 40px 20px;
   background: rgba(0, 0, 0, 0.65);
@@ -128,8 +138,7 @@ nav ul li a:hover {
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Visible state for fade-in */
-.visible {
+.content-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -165,7 +174,7 @@ footer {
 /* Responsive */
 @media screen and (max-width: 1024px) {
   .content-section {
-    flex: 1 1 45%;
+    flex: 1 1 30%;
   }
 }
 
@@ -173,27 +182,13 @@ footer {
   .hero h1 {
     font-size: 2em;
   }
+  .content-container {
+    flex-wrap: wrap; /* stack sections on small screens */
+  }
   .content-section {
     flex: 1 1 100%;
   }
   nav ul li {
     margin: 5px 10px;
   }
-}
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.hero .overlay {
-  background: linear-gradient(
-      120deg,
-      rgba(255, 200, 150, 0.1),
-      rgba(150, 200, 255, 0.1),
-      rgba(200, 255, 180, 0.1),
-      rgba(255, 150, 200, 0.1)
-    );
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite;
 }
