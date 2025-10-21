@@ -31,6 +31,5 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach(section => {
-  section.classList.add('hidden'); // initially hidden
   observer.observe(section);
 });
