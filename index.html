@@ -1,24 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Avi's page</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avi Thapa — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="content">
-            <h1>Hey humans and hello() bots!</h1>
-             <p>Peace and love</p>
-        </div>
-        <div class="image-container">
-            <img src="sf.PNG" alt="San Francisco">
+  <header class="site-header">
+    <div class="max-width">
+      <a class="brand" href="#home">Avi Thapa</a>
+      <nav class="top-nav" aria-label="Primary">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Me</a>
+        <a href="#pictures" class="nav-link">Pictures</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="panel home-panel">
+      <div class="max-width home-grid">
+        <div class="home-content">
+          <h1 class="main-heading">the most beautiful place i've ever lived in</h1>
+          <p class="lead">Welcome — I'm Avi. I build things with code, I like Golden Retrievers, and I'm learning Spanish. This is my small corner of the web. Follow along or get in touch.</p>
+
+          <div class="links-row">
+            <a class="btn ghost" href="https://www.facebook.com/thapaavi/" target="_blank" rel="noopener">Facebook</a>
+            <a class="btn ghost" href="https://instagram.com/avithapa4" target="_blank" rel="noopener">Instagram</a>
+          </div>
         </div>
 
-    </div>
-    
-    <canvas id="fallingSymbols"></canvas>
-    <script src="script.js"></script>
+        <figure class="home-figure" aria-hidden="false">
+          <!-- Replace the src below with your image file path (e.g., images/sf.jpg) if you have one -->
+          <img id="coverImage" src="images/profile.jpg" alt="Profile or San Francisco" onerror="this.classList.add('no-image')" />
+        </figure>
+      </div>
+
+      <!-- falling icons decorative layer -->
+      <div id="floatingIcons" aria-hidden="true" class="floating-icons"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="panel about-panel">
+      <div class="max-width">
+        <h2>About Me</h2>
+        <p>I graduated with a BS in Computer Science and an MS in Information Systems. I work on software systems that aim to make life better—education access, food, housing, and healthcare are topics close to my heart. I like subtle chaos, Golden Retrievers, and practicing Spanish daily.</p>
+        <ul>
+          <li>Software Engineer — 8 years experience</li>
+          <li>Learning Spanish (A1 → next levels)</li>
+          <li>Dissertation: Machines for Humanity — sociotechnical informatics</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pictures -->
+    <section id="pictures" class="panel pictures-panel">
+      <div class="max-width">
+        <h2>Pictures</h2>
+        <p>Below is a responsive grid. Replace the placeholders with your photos in `images/` (example filenames shown).</p>
+
+        <div class="photo-grid">
+          <div class="photo-item"><div class="photo-placeholder">images/sf1.jpg</div></div>
+          <div class="photo-item"><div class="photo-placeholder">images/sf2.jpg</div></div>
+          <div class="photo-item"><div class="photo-placeholder">images/dog.jpg</div></div>
+          <div class="photo-item"><div class="photo-placeholder">images/travel.jpg</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="panel contact-panel">
+      <div class="max-width">
+        <h2>Contact</h2>
+        <p>If you'd like to email me, use the form below — your message will open in your email client. My address is not shown on the page.</p>
+
+        <form id="contactForm" class="contact-form" autocomplete="on">
+          <label>
+            Your name
+            <input type="text" name="name" id="name" required placeholder="Your name" />
+          </label>
+
+          <label>
+            Subject
+            <input type="text" name="subject" id="subject" required placeholder="Subject" />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" id="message" required placeholder="Write a short message..." rows="6"></textarea>
+          </label>
+
+          <div class="form-row">
+            <button type="submit" class="btn primary">Email Me</button>
+            <button type="button" id="clearBtn" class="btn ghost">Clear</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="max-width">© <span id="year"></span> Avi Thapa — Built with care</div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
