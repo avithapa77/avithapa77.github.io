@@ -1,11 +1,39 @@
-const colors = [
-  ["#ffe6f0", "#d5f7f2"],
-  ["#fff0cc", "#ccffff"],
-  ["#e0f7e9", "#ffe0f0"],
-  ["#e6e6ff", "#ffe6cc"]
-];
+const canvas = document.getElementById('fallingSymbols');
+const ctx = canvas.getContext('2d');
 
-document.getElementById("colorButton").addEventListener("click", () => {
-  const random = colors[Math.floor(Math.random() * colors.length)];
-  document.body.style.background = `linear-gradient(to bottom right, ${random[0]}, ${random[1]})`;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const symbols = ['✌️', '❤️'];
+const symbolArray = [];
+
+for(let i = 0; i < 50; i++){
+    symbolArray.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 20 + Math.random() * 30,
+        speed: 1 + Math.random() * 3,
+        symbol: symbols[Math.floor(Math.random() * symbols.length)]
+    });
+}
+
+function animate(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    symbolArray.forEach(s => {
+        ctx.font = `${s.size}px Arial`;
+        ctx.fillText(s.symbol, s.x, s.y);
+        s.y += s.speed;
+        if(s.y > canvas.height){
+            s.y = -50;
+            s.x = Math.random() * canvas.width;
+        }
+    });
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
