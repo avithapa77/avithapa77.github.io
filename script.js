@@ -12,9 +12,9 @@ for(let i = 0; i < 50; i++){
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         //size: 20 + Math.random() * 30,
-        size: 1 + Math.random() * 30,
+        size: 1 + Math.random() * 10,
         //speed: 1 + Math.random() * 3,
-        speed: 0 + Math.random() * 2,
+        speed: 0 + Math.random() * 1,
         symbol: symbols[Math.floor(Math.random() * symbols.length)]
     });
 }
