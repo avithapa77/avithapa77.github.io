@@ -48,12 +48,15 @@ nav ul li a:hover {
 /* Hero Section */
 .hero {
   position: relative;
-  height: 100vh;
-  background: url('sf.PNG') no-repeat center center/cover;
+  width: 100%;
+  height: 100vh; /* full viewport height */
+  background: url('sf.PNG') no-repeat center center;
+  background-size: cover; /* ensures it covers entire hero area */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden; /* prevents any overflow from the image */
 }
 
 .hero .overlay {
