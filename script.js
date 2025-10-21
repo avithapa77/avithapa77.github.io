@@ -1,45 +1,40 @@
 // Contact button
-document.getElementById('contactButton').addEventListener('click', function() {
+document.getElementById('contactButton').addEventListener('click', () => {
   window.location.href = 'mailto:abhayathapa5555@gmail.com';
 });
 
-// Smooth scroll for nav links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
+    document.querySelector(anchor.getAttribute('href')).scrollIntoView({
       behavior: 'smooth'
     });
   });
 });
 
-// Fade-in sections on scroll
+// Fade-in sections
 const sections = document.querySelectorAll('.content-section, .hero-content');
 
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
 
-sections.forEach(section => {
-  observer.observe(section);
-});
-// Highlight active nav link on scroll
+sections.forEach(section => observer.observe(section));
+
+// Highlight nav links
 const navLinks = document.querySelectorAll('nav ul li a');
-const sectionsAll = document.querySelectorAll('main .content-section');
 
 window.addEventListener('scroll', () => {
   let current = '';
-  sectionsAll.forEach(section => {
-    const sectionTop = section.offsetTop - 100; // adjust for header height
-    if (pageYOffset >= sectionTop) {
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) {
       current = section.getAttribute('id');
     }
   });
